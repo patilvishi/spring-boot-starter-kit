@@ -8,7 +8,8 @@ Built in public over **90 days** and updated daily!
 - **Day 2:** Added `UserController` with `/users` endpoint returning mock data. 
 
 ## 🎯 Roadmap
-- ✅ Basic setup  
+- ✅ Basic setup
+- ✅ REST endpoints  
 - ⏳ JWT Authentication  
 - ⏳ Database (Postgres)  
 - ⏳ Docker support  
