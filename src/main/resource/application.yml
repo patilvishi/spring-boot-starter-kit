@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: spring-boot-starter-kit
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/starterkit
+    username: postgres
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true  

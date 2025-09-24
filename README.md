@@ -6,12 +6,13 @@ Built in public over **90 days** and updated daily!
 ## 📅 Progress Log
 - **Day 1:** Project scaffolded with a simple `HelloController`. 
 - **Day 2:** Added `UserController` with `/users` endpoint returning mock data. 
+- **Day 3:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list from DB.
 
 ## 🎯 Roadmap
 - ✅ Basic setup
 - ✅ REST endpoints  
+- ✅ Database (Postgres) 
 - ⏳ JWT Authentication  
-- ⏳ Database (Postgres)  
 - ⏳ Docker support  
 - ⏳ Logging & Monitoring  
 
