@@ -1,10 +1,9 @@
 package com.example.starterkit.service;
 
+import com.example.starterkit.entity.UserEntity;
 import com.example.starterkit.exception.ResourceNotFoundException;
-import com.example.starterkit.model.User;
 import com.example.starterkit.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -16,29 +15,28 @@ public class UserService {
         this.repo = repo;
     }
 
-    public List<User> getAll() {
+    public List<UserEntity> findAll() {
         return repo.findAll();
     }
 
-    public User getById(Long id) {
+    public UserEntity findById(Long id) {
         return repo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found: " + id));
     }
 
-    public User create(User user) {
-        // ensure new entity
-        user.setId(null);
+    public UserEntity save(UserEntity user) {
         return repo.save(user);
     }
 
-    public User update(Long id, User user) {
-        User existing = getById(id);
+    public UserEntity update(Long id, UserEntity user) {
+        UserEntity existing = findById(id);
         existing.setName(user.getName());
         existing.setEmail(user.getEmail());
         return repo.save(existing);
     }
 
     public void delete(Long id) {
-        repo.delete(getById(id));
+        UserEntity existing = findById(id);
+        repo.delete(existing);
     }
 }

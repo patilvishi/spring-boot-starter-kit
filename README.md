@@ -7,8 +7,8 @@ Built in public over **90 days** and updated daily!
 - **Day 1:** Project scaffolded with a simple `HelloController`. 
 - **Day 2:** Added `UserController` with `/users` endpoint returning mock data. 
 - **Day 3:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list from DB.
-- **Day 4:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list, update, delete from DB with Global exception handling.
-
+- **Day 4:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list from DB with Global exception handling.
+- **Day 5:** Completed full CRUD for `UserEntity` and added `@ControllerAdvice`-based global exception handling..
 
 ## 🎯 Roadmap
 - ✅ Basic setup
