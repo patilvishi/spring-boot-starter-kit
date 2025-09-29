@@ -8,15 +8,10 @@ Built in public over **90 days** and updated daily!
 - **Day 2:** Added `UserController` with `/users` endpoint returning mock data. 
 - **Day 3:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list from DB.
 - **Day 4:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list from DB with Global exception handling.
-- **Day 5:** Completed full CRUD for `UserEntity` and added `@ControllerAdvice`-based global exception handling..
+- **Day 5:** Completed full CRUD for `UserEntity` and added `@ControllerAdvice`-based global exception handling.
+- **Day 6:** Added pagination, sorting, and custom query endpoints (`/api/users/paged`, `/api/users/search`) for scalable User listing.
 
-## 🎯 Roadmap
-- ✅ Basic setup
-- ✅ REST endpoints  
-- ✅ Database (Postgres) 
-- ⏳ JWT Authentication  
-- ⏳ Docker support  
-- ⏳ Logging & Monitoring  
+
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  
 

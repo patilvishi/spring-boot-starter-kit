@@ -40,4 +40,22 @@ public class UserController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+	// ✅ Paginated list of all users
+    @GetMapping("/paged")
+    public Page<User> getPagedUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userRepository.findAll(pageable);
+    }
+
+    // ✅ Search users by name (with pagination)
+    @GetMapping("/search")
+    public Page<User> searchByName(
+            @RequestParam String name,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userRepository.findByNameContaining(name, pageable);
+    }
 }
