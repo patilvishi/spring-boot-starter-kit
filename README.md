@@ -10,6 +10,8 @@ Built in public over **90 days** and updated daily!
 - **Day 4:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list from DB with Global exception handling.
 - **Day 5:** Completed full CRUD for `UserEntity` and added `@ControllerAdvice`-based global exception handling.
 - **Day 6:** Added pagination, sorting, and custom query endpoints (`/api/users/paged`, `/api/users/search`) for scalable User listing.
+- **Day 7:**  Added DTOs: `UserRequest` and `UserResponse`, Enforced validation using `spring-boot-starter-validation` (@NotBlank, @Email, @Size), Updated 		`UserController` to accept `@Valid` requests and return `UserResponse` and Improved global error handling: returns a map of field errors for validation failures and structured ApiError for other exceptions.
+
 
 
 
