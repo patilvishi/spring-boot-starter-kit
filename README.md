@@ -12,6 +12,8 @@ Built in public over **90 days** and updated daily!
 - **Day 6:** Added pagination, sorting, and custom query endpoints (`/api/users/paged`, `/api/users/search`) for scalable User listing.
 - **Day 7:**  Added DTOs: `UserRequest` and `UserResponse`, Enforced validation using `spring-boot-starter-validation` (@NotBlank, @Email, @Size), Updated 		`UserController` to accept `@Valid` requests and return `UserResponse` and Improved global error handling: returns a map of field errors for validation failures and structured ApiError for other exceptions.
 - **Day 8:** Setup Swagger/OpenAPI docs.
+- **Day 9:** Enhancing API documentation with annotations and better descriptions.
+
 
 
 

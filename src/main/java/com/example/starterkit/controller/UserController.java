@@ -9,6 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/api/users")
@@ -21,6 +25,8 @@ public class UserController {
     }
 
     // Create
+	@Operation(summary = "Create new user", description = "Register a new user in the system")
+    @ApiResponse(responseCode = "201", description = "User created successfully")
     @PostMapping
     public ResponseEntity<UserResponse> create(@Valid @RequestBody UserRequest req) {
         User saved = userService.createUser(toEntity(req));
@@ -28,6 +34,11 @@ public class UserController {
     }
 
     // Read one
+	@Operation(summary = "Get user by ID", description = "Fetch a specific user by their ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "User found"),
+            @ApiResponse(responseCode = "404", description = "User not found")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getOne(@PathVariable Long id) {
         return userService.getUserById(id)
@@ -36,6 +47,8 @@ public class UserController {
     }
 
     // Read paged
+	@Operation(summary = "Get all users", description = "Fetch all registered users from the database")
+    @ApiResponse(responseCode = "200", description = "List of users retrieved successfully")
     @GetMapping
     public ResponseEntity<Page<UserResponse>> list(
             @RequestParam(defaultValue = "0") int page,
@@ -47,6 +60,8 @@ public class UserController {
     }
 
     // Update
+	@Operation(summary = "Update user", description = "Update existing user details")
+    @ApiResponse(responseCode = "200", description = "User updated successfully")
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> update(@PathVariable Long id, @Valid @RequestBody UserRequest req) {
         User updated = userService.updateUser(id, toEntity(req));
@@ -54,6 +69,11 @@ public class UserController {
     }
 
     // Delete
+	@Operation(summary = "Delete user", description = "Delete a user by ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "User deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "User not found")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteUser(id);
