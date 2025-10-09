@@ -14,6 +14,8 @@ Built in public over **90 days** and updated daily!
 - **Day 8:** Setup Swagger/OpenAPI docs.
 - **Day 9:** Enhancing API documentation with annotations and better descriptions.
 - **Day 10:**  Dockerizing Spring boot starter-kit.
+- **Day 11:**  JWT Authentication (Login + Token Generation). We’ve officially entered **Phase 2 — Authentication & Security**.  
+				Today we implemented **JWT-based login** with Spring Security and PostgreSQL.
 
 
 
@@ -54,3 +56,8 @@ cd spring-boot-starter-kit
 ## Delete:
 
 	DELETE http://localhost:8080/api/users/{id}
+
+### ? What’s New
+- Added `/api/v1/auth/login` endpoint.
+- Integrated Spring Security + BCrypt password hashing.
+- Configured JWT secret + expiry in `application.yml`.
