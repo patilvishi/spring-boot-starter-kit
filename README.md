@@ -1,9 +1,9 @@
-# 🚀 Spring Boot Starter Kit
+#  Spring Boot Starter Kit
 
 A production-ready **Spring Boot Starter Project** with best practices, authentication, logging, and developer-friendly setup.  
 Built in public over **90 days** and updated daily!  
 
-## 📅 Progress Log
+## Progress Log
 - **Day 1:** Project scaffolded with a simple `HelloController`. 
 - **Day 2:** Added `UserController` with `/users` endpoint returning mock data. 
 - **Day 3:** Integrated PostgreSQL + Spring Data JPA. `/users` now supports create & list from DB.
@@ -26,7 +26,7 @@ Follow my journey on [X](https://x.com/patilvishi) for daily updates!
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ```bash
 git clone https://github.com/patilvishi/spring-boot-starter-kit.git
