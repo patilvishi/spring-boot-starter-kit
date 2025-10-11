@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Custom name search with pagination
     @Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE LOWER(CONCAT('%', :name, '%'))")
     Page<User> findByNameContaining(@Param("name") String name, Pageable pageable);
+	
+	Optional<User> findByUsername(String username);
 }

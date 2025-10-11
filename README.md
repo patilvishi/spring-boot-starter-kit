@@ -16,10 +16,7 @@ Built in public over **90 days** and updated daily!
 - **Day 10:**  Dockerizing Spring boot starter-kit.
 - **Day 11:**  JWT Authentication (Login + Token Generation). We’ve officially entered **Phase 2 — Authentication & Security**.  
 				Today we implemented **JWT-based login** with Spring Security and PostgreSQL.
-
-
-
-
+- **Day 12:**  Role-Based Authorization (ADMIN / USER)
 
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  
@@ -61,3 +58,32 @@ cd spring-boot-starter-kit
 - Added `/api/v1/auth/login` endpoint.
 - Integrated Spring Security + BCrypt password hashing.
 - Configured JWT secret + expiry in `application.yml`.
+
+### Test Flow User based
+
+Register users with different roles:
+
+POST /api/auth/signup
+{
+  "username": "vish_admin",
+  "email": "admin@example.com",
+  "password": "admin123",
+  "role": "ROLE_ADMIN"
+}
+
+POST /api/auth/signup
+{
+  "username": "vish_user",
+  "email": "user@example.com",
+  "password": "user123",
+  "role": "ROLE_USER"
+}
+
+
+Login both users -> get tokens.
+
+Try:
+
+GET /api/admin/dashboard ? Works only for ADMIN.
+
+GET /api/user/profile ? Works for both ADMIN & USER.

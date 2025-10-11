@@ -91,6 +91,11 @@ public class UserController {
         Page<UserResponse> resp = users.map(this::toResponse);
         return ResponseEntity.ok(resp);
     }
+	
+	@GetMapping("/profile")
+    public String userProfile() {
+        return "Welcome, User 👋 This is your profile.";
+    }
 
     // Converters
     private User toEntity(UserRequest req) {

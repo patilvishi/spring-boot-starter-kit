@@ -6,6 +6,8 @@ import lombok.*;
 @Entity
 @Table(name = "users")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,4 +21,10 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+	
+	@Column(nullable = false, unique = true)
+	private String password;
+	
+	@Enumerated(EnumType.STRING)
+    private Role role; 
 }

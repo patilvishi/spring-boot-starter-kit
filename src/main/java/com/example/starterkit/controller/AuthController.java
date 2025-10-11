@@ -30,4 +30,22 @@ public class AuthController {
     static class TokenResponse {
         private String token;
     }
+	
+	@PostMapping("/signup")
+	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
+	if (userRepository.findByUsername(signupRequest.getUsername()).isPresent()) {
+		return ResponseEntity.badRequest().body("Username already exists!");
+	}
+
+	User user = User.builder()
+			.username(signupRequest.getUsername())
+			.email(signupRequest.getEmail())
+			.password(passwordEncoder.encode(signupRequest.getPassword()))
+			.role(signupRequest.getRole())  // 👈 Role from request
+			.build();
+
+	userRepository.save(user);
+	return ResponseEntity.ok("User registered successfully!");
+	}
+
 }
