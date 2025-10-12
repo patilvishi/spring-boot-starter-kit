@@ -7,6 +7,7 @@ import com.example.starterkit.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.security.access.prepost.PostAuthorize;
 
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+	@PostAuthorize("returnObject.username == authentication.name or hasRole('ADMIN')")
     public Optional<User> getUserById(Long id) {
         return repo.findById(id);
     }

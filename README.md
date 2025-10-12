@@ -17,6 +17,16 @@ Built in public over **90 days** and updated daily!
 - **Day 11:**  JWT Authentication (Login + Token Generation). We’ve officially entered **Phase 2 — Authentication & Security**.  
 				Today we implemented **JWT-based login** with Spring Security and PostgreSQL.
 - **Day 12:**  Role-Based Authorization (ADMIN / USER)
+- **Day 13:** Method-Level Authorization (@PreAuthorize / @PostAuthorize)
+
+			- Enabled `@EnableMethodSecurity(prePostEnabled = true)` in `SecurityConfig`.
+			- Added fine-grained method-level access:
+			- `@PreAuthorize("hasRole('ADMIN')")` for admin-only endpoints.
+			- `@PreAuthorize("hasAnyRole('USER','ADMIN')")` for user endpoints.
+			- Introduced `@PostAuthorize` to validate access *after* execution — great for per-user data filtering.
+
+			This makes the Starter Kit more secure and production-ready.
+
 
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  

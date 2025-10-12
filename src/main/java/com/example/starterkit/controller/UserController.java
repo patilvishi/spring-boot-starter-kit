@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/api/users")
@@ -40,6 +41,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @GetMapping("/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<UserResponse> getOne(@PathVariable Long id) {
         return userService.getUserById(id)
                 .map(u -> ResponseEntity.ok(toResponse(u)))
@@ -50,6 +52,7 @@ public class UserController {
 	@Operation(summary = "Get all users", description = "Fetch all registered users from the database")
     @ApiResponse(responseCode = "200", description = "List of users retrieved successfully")
     @GetMapping
+	@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<UserResponse>> list(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -75,6 +78,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
