@@ -26,6 +26,15 @@ Built in public over **90 days** and updated daily!
 			- Introduced `@PostAuthorize` to validate access *after* execution — great for per-user data filtering.
 
 			This makes the Starter Kit more secure and production-ready.
+- **Day 14:** Refresh Tokens + Expiry Handling
+
+			- Added short-lived Access Tokens (15 mins)
+			- Added long-lived Refresh Tokens (7 days)
+			- New endpoint: `/api/auth/refresh` to renew access token
+			- Improves UX — users stay logged in without re-entering credentials
+
+			Key: Access token handles frequent calls, refresh token handles session continuity.
+
 
 
 
