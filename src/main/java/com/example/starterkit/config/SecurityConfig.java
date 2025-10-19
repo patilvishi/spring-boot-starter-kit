@@ -1,7 +1,7 @@
 package com.example.starterkit.config;
 
 import com.example.starterkit.service.CustomUserDetailsService;
-import com.example.starterkit.util.JwtFilter;
+import com.example.starterkit.security.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

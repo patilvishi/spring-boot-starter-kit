@@ -34,7 +34,10 @@ Built in public over **90 days** and updated daily!
 			- Improves UX — users stay logged in without re-entering credentials
 
 			Key: Access token handles frequent calls, refresh token handles session continuity.
+- **Day 15:**  Added `/api/user/me` endpoint to return the current authenticated user's profile.
 
+			- Uses JWT Bearer token (Authorization header) to identify user.
+			- Returns `id`, `username`, `email`, and roles.
 
 
 

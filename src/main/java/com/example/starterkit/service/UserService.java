@@ -13,4 +13,5 @@ public interface UserService {
     User updateUser(Long id, User user);
     void deleteUser(Long id);
     Page<User> searchByName(String name, Pageable pageable);
+	 Optional<User> findByUsername(String username);
 }

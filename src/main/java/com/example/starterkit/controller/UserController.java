@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 
 @RestController
 @RequestMapping("/api/users")
@@ -100,6 +101,19 @@ public class UserController {
     public String userProfile() {
         return "Welcome, User 👋 This is your profile.";
     }
+	
+	 @GetMapping("/me")
+    public ResponseEntity<UserProfileResponse> getProfile(Authentication authentication) {
+        if (authentication == null || authentication.getName() == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        String username = authentication.getName();
+        return userService.findByUsername(username)
+                .map(this::toResponse)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     // Converters
     private User toEntity(UserRequest req) {
@@ -114,6 +128,7 @@ public class UserController {
                 .id(u.getId())
                 .name(u.getName())
                 .email(u.getEmail())
+				.roles(u.getRoles())
                 .build();
     }
 }

@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService {
     public Page<User> searchByName(String name, Pageable pageable) {
         return repo.findByNameContaining(name, pageable);
     }
+	
+	@Override
+    public Optional<User> findByUsername(String username) {
+        return repo.findByUsername(username);
+    }
 }
