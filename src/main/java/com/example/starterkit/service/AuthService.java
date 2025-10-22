@@ -1,26 +1,34 @@
 package com.example.starterkit.service;
 
+import com.example.starterkit.entity.RefreshToken;
 import com.example.starterkit.entity.User;
-import com.example.starterkit.repository.UserRepository;
-import com.example.starterkit.util.JwtUtil;
+import com.example.starterkit.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
+    private final RefreshTokenRepository refreshTokenRepository;
 
-    public String login(String username, String password) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Invalid username"));
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new RuntimeException("Invalid password");
+    public RefreshToken createRefreshToken(User user) {
+        RefreshToken refreshToken = RefreshToken.builder()
+                .user(user)
+                .token(UUID.randomUUID().toString())
+                .expiryDate(Instant.now().plusSeconds(7 * 24 * 60 * 60)) // 7 days
+                .build();
+        return refreshTokenRepository.save(refreshToken);
+    }
+
+    public RefreshToken verifyExpiration(RefreshToken token) {
+        if (token.getExpiryDate().isBefore(Instant.now())) {
+            refreshTokenRepository.delete(token);
+            throw new RuntimeException("Refresh token expired. Please sign in again.");
         }
-        return jwtUtil.generateToken(username);
+        return token;
     }
 }

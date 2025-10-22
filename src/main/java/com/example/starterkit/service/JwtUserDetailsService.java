@@ -22,7 +22,17 @@ public class JwtUserDetailsService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .authorities(user.getRole().name()) // 👈 Add authorities from role
+                .authorities(user.getRole().name()) 
                 .build();
     }
+	
+	@Override
+	public String generateTokenFromUsername(String username) {
+    return Jwts.builder()
+            .setSubject(username)
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15)) // 15 min
+            .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+            .compact();
+	}
 }

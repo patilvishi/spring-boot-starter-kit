@@ -4,6 +4,9 @@ import com.example.starterkit.util.JwtUtil;
 import com.example.starterkit.entity.Role;
 import com.example.starterkit.entity.User;
 import com.example.starterkit.repository.UserRepository;
+import com.example.starterkit.repository.RefreshTokenRepository;
+import com.example.starterkit.servivce.AuthService;
+import com.example.starterkit.servivce.JwtUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,9 +20,12 @@ import java.util.*;
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;	
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+	private final RefreshTokenRepository refreshTokenRepository;
+	private final AuthService authService;
+	private final JwtUserDetailsService jwtService;
 
     @PostMapping("/signup")
     public Map<String, String> signup(@RequestBody Map<String, String> request) {
@@ -61,12 +67,16 @@ public class AuthController {
     public Map<String, String> refresh(@RequestBody Map<String, String> request) {
         String refreshToken = request.get("refreshToken");
 
-        if (jwtUtil.validateToken(refreshToken)) {
-            String username = jwtUtil.extractUsername(refreshToken);
-            String newAccessToken = jwtUtil.generateAccessToken(username);
-            return Map.of("accessToken", newAccessToken);
-        }
-
-        return Map.of("error", "Invalid or expired refresh token!");
+          return refreshTokenRepository.findByToken(refreshToken)
+            .map(authService::verifyExpiration)
+            .map(RefreshToken::getUser)
+            .map(user -> {
+                String newToken = jwtService.generateTokenFromUsername(user.getUsername());
+                return ResponseEntity.ok(Map.of(
+                        "accessToken", newToken,
+                        "refreshToken", refreshToken
+                ));
+            })
+            .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
     }
 }

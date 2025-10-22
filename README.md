@@ -38,6 +38,8 @@ Built in public over **90 days** and updated daily!
 
 			- Uses JWT Bearer token (Authorization header) to identify user.
 			- Returns `id`, `username`, `email`, and roles.
+- **Day 16:** Added refresh token flow (DB-backed, 7-day expiry)
+
 
 
 
