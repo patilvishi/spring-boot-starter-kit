@@ -39,6 +39,10 @@ Built in public over **90 days** and updated daily!
 			- Uses JWT Bearer token (Authorization header) to identify user.
 			- Returns `id`, `username`, `email`, and roles.
 - **Day 16:** Added refresh token flow (DB-backed, 7-day expiry)
+- **Day 17:** Security Audit logging
+			 - Log authenticated username, HTTP method, and endpoint path for every secured request.
+			 - Keep logs structured (JSON-style via SLF4J + Logback).
+			 - Store logs optionally in DB in future (we’ll log to console for now).
 
 
 
