@@ -3,6 +3,7 @@ package com.example.starterkit.config;
 import com.example.starterkit.service.CustomUserDetailsService;
 import com.example.starterkit.security.JwtFilter;
 import com.example.starterkit.security.SecurityAuditFilter;
+import com.example.starterkit.security.config.JwtAuthEntryPoint
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,17 +24,20 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
    	private final SecurityAuditFilter securityAuditFilter;
 	private final AuthenticationProvider authenticationProvider;
+	private final JwtAuthEntryPoint
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**,/swagger-ui/**", "/v3/api-docs/**").permitAll()
-						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/public/**").permitAll()
 						.requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
+				.exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthEntryPoint))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
 				.addFilterAfter(securityAuditFilter, JwtFilter.class);

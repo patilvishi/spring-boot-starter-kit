@@ -43,7 +43,10 @@ Built in public over **90 days** and updated daily!
 			 - Log authenticated username, HTTP method, and endpoint path for every secured request.
 			 - Keep logs structured (JSON-style via SLF4J + Logback).
 			 - Store logs optionally in DB in future (we’ll log to console for now).
-
+- **Day 18:** JWT Enforcement + Integration Tests (Securing APIs)
+			- Ensure all endpoints are secured via JWT filter
+			- Write integration tests to validate LOGIN, USER, ADMIN, and LOGOUT flows
+			- Verify unauthorized requests are blocked properly
 
 
 
