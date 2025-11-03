@@ -47,7 +47,11 @@ Built in public over **90 days** and updated daily!
 			- Ensure all endpoints are secured via JWT filter
 			- Write integration tests to validate LOGIN, USER, ADMIN, and LOGOUT flows
 			- Verify unauthorized requests are blocked properly
-
+- **Day 19:** Aspect-Oriented Programming (AOP) – Logging & Auditing
+			- Applied **AOP Logging** to controllers & services
+			- Tracks **method entry, exit, and exceptions**
+			- Keeps business code clean — all logging centralized
+			- Uses `@Aspect` and `@Before`, `@AfterReturning`, `@AfterThrowing` annotations
 
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  
