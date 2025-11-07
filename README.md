@@ -53,6 +53,12 @@ Built in public over **90 days** and updated daily!
 			- Keeps business code clean — all logging centralized
 			- Uses `@Aspect` and `@Before`, `@AfterReturning`, `@AfterThrowing` annotations
 
+- **Day 20:** AOP Performance Monitoring & Execution Time Tracking
+			- Added AOP Aspect for Performance Tracking
+			- Measures method execution time using `@Around`
+			- Logs slow method calls across controllers & services
+			- Complements AOP Logging from Day 19
+
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  
 
