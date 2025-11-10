@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+	@Transactional
     public User createUser(User user) {
         user.setId(null);
         return repo.save(user);
@@ -47,6 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+	@Transactional
     public void deleteUser(Long id) {
         User existing = repo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));

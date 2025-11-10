@@ -58,6 +58,13 @@ Built in public over **90 days** and updated daily!
 			- Measures method execution time using `@Around`
 			- Logs slow method calls across controllers & services
 			- Complements AOP Logging from Day 19
+- **Day 21:** Transaction Auditing (Begin / Commit / Rollback)
+			- Built a new AOP Aspect to track transactions
+			- Logs:
+				- Begin  
+				- Commit  
+				- Rollback
+			- Works automatically with any method using `@Transactional` 
 
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  
