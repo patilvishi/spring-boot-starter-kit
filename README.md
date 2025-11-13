@@ -65,6 +65,14 @@ Built in public over **90 days** and updated daily!
 				- Commit  
 				- Rollback
 			- Works automatically with any method using `@Transactional` 
+- **Day 22:** JPA Auditing (createdAt, updatedAt)
+
+			- Added JPA Auditing with `@EnableJpaAuditing`
+			- Updated User entity to include:
+				- `@CreatedDate`
+				- `@LastModifiedDate`
+			- Enabled automatic timestamps on create/update
+			- Cleaner entities ? no manual timestamp management
 
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  
