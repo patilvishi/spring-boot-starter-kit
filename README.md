@@ -73,6 +73,19 @@ Built in public over **90 days** and updated daily!
 				- `@LastModifiedDate`
 			- Enabled automatic timestamps on create/update
 			- Cleaner entities ? no manual timestamp management
+- **Day 23:**  Global API Response Wrapper
+
+			- Added `ApiResponse<T>` for standardized success responses
+			- Added `ApiErrorResponse` for consistent error responses
+			- Updated controllers to return clean response structure
+			- Updated GlobalExceptionHandler to produce consistent JSON
+			- Now every API returns:
+				{
+					"success": true,
+					"message": "...",
+					"data": {},
+					"timestamp": "2025-02-21T12:40:10"
+				}
 
 
 Follow my journey on [X](https://x.com/patilvishi) for daily updates!  

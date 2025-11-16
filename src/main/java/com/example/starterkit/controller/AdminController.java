@@ -7,7 +7,15 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     @GetMapping("/dashboard")
-    public String adminDashboard() {
-        return "Welcome, Admin! 🛡️";
-    }
+	public ResponseEntity<ApiResponse<String>> dashboard() {
+
+    ApiResponse<String> response = ApiResponse.<String>builder()
+            .success(true)
+            .message("Admin dashboard loaded")
+            .data("Welcome Admin")
+            .timestamp(LocalDateTime.now())
+            .build();
+
+    return ResponseEntity.ok(response);
+	}
 }

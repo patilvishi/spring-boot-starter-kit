@@ -98,12 +98,22 @@ public class UserController {
     }
 	
 	@GetMapping("/profile")
-    public String userProfile() {
-        return "Welcome, User 👋 This is your profile.";
-    }
+	public ResponseEntity<ApiResponse<UserResponse>> profile(Authentication auth) {
+		String username = auth.getName();
+		UserResponse profile = userService.getProfile(username);
+
+		ApiResponse<UserResponse> response = ApiResponse.<UserResponse>builder()
+            .success(true)
+            .message("Profile fetched successfully")
+            .data(profile)
+            .timestamp(LocalDateTime.now())
+            .build();
+
+		return ResponseEntity.ok(response);
+	}
 	
 	 @GetMapping("/me")
-    public ResponseEntity<UserProfileResponse> getProfile(Authentication authentication) {
+    public ResponseEntity<UserResponse> getProfile(Authentication authentication) {
         if (authentication == null || authentication.getName() == null) {
             return ResponseEntity.status(401).build();
         }
